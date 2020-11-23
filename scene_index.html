@@ -82,7 +82,7 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function onMouseMove(event) {
+function onMouseClick(event) {
             event.preventDefault();
             //getting the mouse pos
             mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
@@ -101,9 +101,22 @@ function onMouseMove(event) {
             }
         }
 
-        
+function onMouseMove(event) {
+
+         this.tl = new TimelineMax();
+         this.tl.to(this.mesh1.scale, 1, {x: 2, ease: Expo.easeOut})
+         this.tl.to(this.mesh1.scale, .5, {x: .5, ease: Expo.easeOut})
+         this.tl.to(this.mesh1.position, .5, {x: randomIntFromInterval(-6,6) , ease: Expo.easeOut})
+         this.tl.to(this.mesh1.rotation, .5, {y: Math.PI*.5, ease: Expo.easeOut}, "=-1.5")
+         this.tl.to(this.mesh1.rotation, .5, {y: Math.PI*.5, ease: Expo.easeOut}, "=-1.5")
+    
+ }
 
 window.addEventListener('click', onMouseMove);
+
+
+
+window.addEventListener('click', onMouseClick);
 
         render();
 
